@@ -1,17 +1,22 @@
 from django.shortcuts import render
 
+from . import googleapi
+
 
 def home(request):
     return render(request, 'attractions/home.html')
 
 def nearby(request):
+    if request.method == 'POST':
+        actual_location = str(request.POST.get('actual_location',))
+        googleapi.GoogleApi.set_location(actual_location)
     return render(request, 'attractions/nearby.html')
 
 def found(request):
-    fav_attractions = ['a','b','c']
-
+    google_response = googleapi.GoogleApi().result
     context = {
-        'fav_attractions': fav_attractions
+        'status': google_response['status'],
+        'message': google_response['error_message']
     }
     return render(request, 'attractions/found.html', context)
 
