@@ -1,4 +1,9 @@
-{{ status }}
-<br>
-<br>
-{{ message }}
+{% extends 'attractions/header.html' %}
+
+{% block content %}
+<div style="position: relative;top: 100px;">
+    {{ status }}
+    <br><br>
+    {{ message }}
+</div>
+{% endblock %}
