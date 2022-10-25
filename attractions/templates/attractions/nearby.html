@@ -1,0 +1,31 @@
+{% extends 'attractions/header.html' %}
+
+{% block content %}
+<h1 style="position: relative;text-align: center;top: 200px">Pick or insert a position:</h1>
+
+<div style="position: relative;
+            text-align: center;
+            top: 250px;">
+    <form action="{% url 'attractions:found' %}">
+        <input type="text"
+                value="Insert location"
+                style="inline-block;
+                        padding: 14px 16px;
+                        border: 2px solid black;
+                        border-collapse: collapse;
+                        background-color: white;
+                        color: black;
+                        text-decoration: none;">
+        </input>
+        <br><br>
+        <input type="submit" 
+                value="Send location"
+                style="inline-block;
+                padding: 14px 16px;
+                background-color: black;
+                color: white;
+                text-decoration: none;">
+        </input>
+    </form>
+</div>
+{% endblock %}

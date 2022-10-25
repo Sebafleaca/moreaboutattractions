@@ -5,14 +5,7 @@ def home(request):
     return render(request, 'attractions/home.html')
 
 def nearby(request):
-    x = 1
-    y = 2
-    posi = [x,y]
-
-    context = {
-        'posi': posi
-    }
-    return render(request, 'attractions/nearby.html', context)
+    return render(request, 'attractions/nearby.html')
 
 def found(request):
     fav_attractions = ['a','b','c']
