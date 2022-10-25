@@ -4,7 +4,8 @@
 
 <body style="background-color:black">
     <div class="box">
-        <form action="index_submit" method="get">
+        <form action="index_submit" method="post">
+            {% csrf_token %}
             <ul>
                 <li class="element">
                     <label for="usermail">User</label><br>
