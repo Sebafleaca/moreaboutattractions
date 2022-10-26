@@ -1,7 +1,7 @@
 {% extends 'attractions/header.html' %}
 
 {% block content %}
-<h1 style="position: relative;text-align: center;top: 200px">Pick or insert a location</h1>
+<h1 style="position: relative;text-align: center;top: 200px">Insert a location</h1>
 
 <div style="position: relative;
             text-align: center;
@@ -9,8 +9,8 @@
     <form action="{% url 'attractions:found' %}" method="post">
         {% csrf_token %} 
         <input type="text"
-                name='actual_location'
-                placeholder="Insert location"
+                name='location'
+                placeholder="(latitude, longitude)"
                 style="inline-block;
                         padding: 14px 16px;
                         border: 2px solid black;
@@ -21,14 +21,15 @@
                         text-align: center">
         </input>
         <br><br>
-        <input type="submit" 
+        <button type="submit"
                 value="Send"
                 style="inline-block;
                         padding: 14px 16px;
                         background-color: black;
                         color: white;
                         text-decoration: none;">
-        </input>
+                        Send
+        </button>
     </form>
 </div>
 <p>{{ new_loc }}</p>

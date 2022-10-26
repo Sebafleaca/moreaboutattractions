@@ -1,9 +1,37 @@
 {% extends 'attractions/header.html' %}
 
 {% block content %}
-<div style="position: relative;top: 100px;">
+<div style="position: relative;top: 100px; overflow: scroll">
+    <h3>Google denial</h3>
     {{ status }}
     <br><br>
     {{ message }}
-</div>
+    <br><br>
+    <h3>Mock data</h3>
+    <p>List of nearby attractions:</p>
+    <p>See also saved list</p>
+    <button> 
+        <a href="{% url 'attractions:favorites' %}">Favorites</a>
+    </button>
+    <ul>
+    {% for elem in all_attractions%}
+            <form action="/attractions/{{ elem.id }}" method="post">
+                <p name="attraction {{elem.id}}">{{ elem.name }}</p>
+                {% csrf_token %}
+                <input type="submit" 
+                        href="/attractions/{{ elem.id }}" 
+                        value="{% if elem.saved %} Remove {%else%} Save {%endif%}" 
+                        name="save_or_delete {{elem.id}}">
+                </input>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+    <br>
+    <p>List of db elements:</p>
+    <ul>
+    {% for elem in all_attractions%}
+        <li>{{ elem }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}

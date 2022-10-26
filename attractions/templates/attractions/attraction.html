@@ -1,0 +1,23 @@
+{% extends 'attractions/header.html' %}
+
+{% block content %}
+<div style="position: relative;top: 100px;">
+    <p>Name: {{ attraction_name }}</p>
+
+    <p>Location: {{ attraction_position }}</p>
+
+    <p>Saved: {% if attraction_saved %} yes {% else %} no {% endif %}</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" 
+                value="{% if attraction_saved %} 
+                    Delete from favorites 
+                {% else %} 
+                    Save to favorites 
+                {% endif %}" 
+                name="add_or_remove">
+        </input>
+    </form>
+<div>
+{% endblock %}

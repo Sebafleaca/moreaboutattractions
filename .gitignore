@@ -1,4 +1,5 @@
 prjenv/
 attractions/__pycache__/
+attractions/migrations/__pycache__/
 moreaboutattractions/__pycache__/
 
