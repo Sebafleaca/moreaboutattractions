@@ -1,9 +1,12 @@
 <html Content-Type='application/x-www-form-urlencoded'>
-
-<p>{{ old_user }}</p><br>
-
-{% for elem in print_all %}
-    {{ elem }}
-{% endfor %}
-
+    <p>User found: {{ old_user }}</p>
+    <br>
+    <p>List of all users:</p>
+    <ul>
+    {% for elem in print_all %}
+      <li>  {{ elem }} </li>
+    {% endfor %}
+    </ul>
+    <br>
+    <p>All records in db: {{ print_all }}</p>
 </html>

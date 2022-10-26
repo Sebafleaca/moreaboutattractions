@@ -4,14 +4,14 @@
 </head>
 
 <body style="background-color:black">
-    <div class="box">
-        <form action="{% url 'login:user' %}" method="post">
-            {% csrf_token %}
-            <ul>
+        <div class="box">
+            <form action="{% url 'login:user' %}" method="post">
+                {% csrf_token %}
                 {{ form }}
-            </ul>
-        </form>
-    </div>
+            </form>
+        </div>
+
+        <p>{{ get_user }}</p>
 </body>
 
 </html>
