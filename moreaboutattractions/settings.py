@@ -31,7 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     'login.apps.LoginConfig',
+=======
+    'attractions.apps.AttractionsConfig',
+>>>>>>> 90a85c32f9b7f5752cf8218241efb9e93579ec17
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +126,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_API_KEY = "AIzaSyAEWDbrBhp1Zpb0Ds_Ni-w0j7wih6lffkY"
