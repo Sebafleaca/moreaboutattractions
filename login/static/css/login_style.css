@@ -24,8 +24,32 @@
 
 .button{
     position: relative;
-    left: 24%;
-    padding: 10px;
+    border: none;
+    background-color: black;
+    text-decoration: none;
+    text-align: center;
     text-decoration: none;
     list-style: none;
+}
+
+.button_div{
+    position: relative;
+    left: 20%;
+    top: 15px;
+    padding: 10px;
+    border: none;
+    position: relative;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    background-color: black;
+    text-decoration: none;
+    list-style: none;
+}
+
+.link{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
 }
