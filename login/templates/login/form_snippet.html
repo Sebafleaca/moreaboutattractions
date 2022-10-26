@@ -1,0 +1,23 @@
+<ul>
+    <li class="element">
+        <label for="usermail">User</label><br>
+        <input name="user_name" type="txt" placeholder="username or email" required>
+        </input>
+    </li>
+    <li class="element">
+        <label for="password">Password</label><br>
+        <input name="user_password" type="password" placeholder="password" required>
+        </input>
+    </li>
+    <li class="button_div">
+
+        <!--<input type="submit" class="link" value="Log in">-->
+        <button class="button" type="submit" >
+            <a class="link" 
+                href="{% url 'login:user' %}">
+                Log in
+            </a>
+        </button>
+    
+    </li>
+</ul>

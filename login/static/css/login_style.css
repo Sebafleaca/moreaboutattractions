@@ -1,0 +1,55 @@
+.background{
+    background-color: black;
+}
+
+.box{
+    align-items: center;
+    background-color: white;
+    border: 1px solid;
+    padding: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.element{
+    position: relative;
+    left: -10%;
+    padding: 10px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.button{
+    position: relative;
+    border: none;
+    background-color: black;
+    text-decoration: none;
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+}
+
+.button_div{
+    position: relative;
+    left: 20%;
+    top: 15px;
+    padding: 10px;
+    border: none;
+    position: relative;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    background-color: black;
+    text-decoration: none;
+    list-style: none;
+}
+
+.link{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
