@@ -1,0 +1,22 @@
+{% extends 'attractions/header.html' %}
+
+{% block content %}
+<h1 style="position: relative;text-align: center;top: 200px">Look for attractions nearby!</h1>
+
+<div style="position: relative;
+            text-align: center;
+            top: 250px;">
+    <button style="inline-block;
+                    padding: 14px 16px;
+                    background-color: black;
+                    text-decoration: none;">
+        <a style="display: block;
+                    color: white;
+                    text-align: center;
+                    text-decoration: none;" 
+            href="{% url 'attractions:nearby' %}">
+            Start looking around
+        </a>
+    </button>
+</div>
+{% endblock %}
