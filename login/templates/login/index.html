@@ -1,0 +1,17 @@
+<html Content-Type='application/x-www-form-urlencoded'>
+<head>
+    <link rel="stylesheet" href="../static/css/login_style.css">
+</head>
+
+<body style="background-color:black">
+        <div class="box">
+            <form action="{% url 'login:user' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+            </form>
+        </div>
+
+        <p>{{ get_user }}</p>
+</body>
+
+</html>
