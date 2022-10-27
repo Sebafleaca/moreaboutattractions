@@ -18,10 +18,10 @@ What still has to be done:
 
 Usage:
 Install all requirements, make migrations and launch ./manage.py run server
-It'll start a server at localhost:8000 with the following URLs:
-/admin
-/login
-/attractions
-/attractions/found
-/attractions/<attraction number>
-/attractions/favorites
+It'll start a server at localhost:8000 with the following endpoints:
+- /admin
+- /login
+- /attractions
+- /attractions/found
+- /attractions/<attraction number>
+- /attractions/favorites
