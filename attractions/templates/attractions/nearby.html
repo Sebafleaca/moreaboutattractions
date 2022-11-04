@@ -6,7 +6,7 @@
 <div style="position: relative;
             text-align: center;
             top: 250px;">
-    <form action="{% url 'attractions:found' %}" method="post">
+    <form action="{% url 'attractions:found' %}" method="POST">
         {% csrf_token %}
         {{ location_form }}
         <!--

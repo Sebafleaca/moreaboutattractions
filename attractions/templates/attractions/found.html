@@ -13,19 +13,17 @@
     <h3>Mock data</h3>
     <p> Attractions found near {{ latitude }}°N {{ longitude }}°W: </p>
     <p>See also saved list</p>
-    <button> 
-        <a href="{% url 'attractions:favorites' %}">Favorites</a>
-    </button>
+    <form action="{% url 'attractions:favorites' %}" method="GET">
+        <button> Favorites </button>
+    </form>
     <ul>
     {% for elem in all_attractions%}
-            <form action="/attractions/{{ elem.id }}" method="post">
-                <p name="attraction {{elem.id}}">{{ elem.name }}</p>
+            <form action="/attractions/{{ elem.id }}" method="GET">
                 {% csrf_token %}
-                <input type="submit" 
-                        href="/attractions/{{ elem.id }}" 
-                        value="{% if elem.saved %} Remove {%else%} Save {%endif%}" 
-                        name="save_or_delete {{elem.id}}">
-                </input>
+                <p>{{ elem.name }}</p>
+                <button type="submit">
+                    Edit preferences
+                </button>
             </form>
         </li>
     {% endfor %}

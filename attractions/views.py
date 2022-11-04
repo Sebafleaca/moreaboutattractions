@@ -1,6 +1,7 @@
 import random
 
 from django.shortcuts import render
+#from django.shortcuts import redirect
 
 from .models import Attraction, Favorite
 from .forms import LocationForm
@@ -45,6 +46,7 @@ def found(request):
                     attraction.save()
     
             all_attractions = Attraction.objects.all()
+
             context = {
                 'status': google_response['status'],
                 'message': google_response['error_message'],
@@ -54,24 +56,20 @@ def found(request):
                 'received_data': received_data,
             }
     else:
-        raise NameError("/nearby/ doesn't get POST nor GET")
+        #return redirect(nearby)
+        raise NameError("/nearby/ doesn't get a POST request.")
 
     return render(request, 'attractions/found.html', context)
 
-def attraction(request, attraction_number):
-    attraction = Attraction.objects.get(id=attraction_number)
-    context = {
-        'attraction_name': attraction.name,
-        'attraction_position': attraction.position,
-        'attraction_saved': attraction.saved,
-    }
+def attraction(request, number):
+    attraction = Attraction.objects.get(id=number)
 
-    if request.method == 'POST':        
-        if attraction.saved:
+    if request.method == 'POST':
+        if attraction.saved:            
             Favorite.objects.filter(attraction=attraction.name).delete()
             attraction.saved = False
             attraction.save()
-        else:            
+        else:
             new_favorite = Favorite.objects.create()
             new_favorite.attraction = str(attraction)
             new_favorite.rating = random.randrange(1, 10)
@@ -79,13 +77,20 @@ def attraction(request, attraction_number):
             attraction.saved = True
             attraction.save()
 
+    context = {
+        'attraction_name': attraction.name,
+        'attraction_position': attraction.position,
+        'attraction_saved': attraction.saved,
+    }
 
     return render(request, 'attractions/attraction.html', context)
 
 def favorites(request):
-    favorite_attractions = Favorite.objects.all().values()
 
-    context = {
-        'favorite_attractions': favorite_attractions
-    }
+    if request.method == 'POST':
+        favorite_attractions = Favorite.objects.all()
+
+        context = {
+            'favorite_attractions': favorite_attractions
+        }
     return render(request, 'attractions/favorites.html', context)

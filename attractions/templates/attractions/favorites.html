@@ -4,10 +4,12 @@
 <div style="position: relative;top: 100px;">
     <h2>My favorite attractions:</h2>
 
-    <ul style="text-decoration: none; list-style: none">
+    <ul style="text-decoration: none;">
         {% for elem in favorite_attractions%}
         <li>
-            {{ elem }}
+            {{ elem.attraction }}
+            <br>
+            rating: {{ elem.rating }}
         </li>
         {% endfor %}
     </ul>

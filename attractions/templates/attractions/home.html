@@ -6,17 +6,23 @@
 <div style="position: relative;
             text-align: center;
             top: 250px;">
-    <button style="inline-block;
-                    padding: 14px 16px;
-                    background-color: black;
-                    text-decoration: none;">
-        <a style="display: block;
-                    color: white;
-                    text-align: center;
-                    text-decoration: none;" 
-            href="{% url 'attractions:nearby' %}">
-            Start looking around
-        </a>
-    </button>
+    <form action="{% url 'attractions:nearby' %}" method='GET'>
+        <button style="inline-block;
+                        padding: 14px 16px;
+                        background-color: black;                    
+                        text-decoration: none;
+                        color: white;"
+                method="submit"
+                value="Start looking around">
+                Start looking around
+            <!--<a style="display: block;
+                        color: white;
+                        text-align: center;
+                        text-decoration: none;" 
+                href="{% url 'attractions:nearby' %}">
+                Start looking around
+            </a>-->
+        </button>
+    </form>
 </div>
 {% endblock %}
