@@ -2,13 +2,16 @@
 
 {% block content %}
 <div style="position: relative;top: 100px; overflow: scroll">
-    <h3>Google denial</h3>
-    {{ status }}
-    <br><br>
-    {{ message }}
-    <br><br>
+    <div style="border: 1px solid">
+        <h3>Google denial</h3>
+        {{ status }}
+        <br><br>
+        {{ message }}
+        <br>
+    </div>
+    <br>
     <h3>Mock data</h3>
-    <p>List of nearby attractions:</p>
+    <p> Attractions found near {{ latitude }}°N {{ longitude }}°W: </p>
     <p>See also saved list</p>
     <button> 
         <a href="{% url 'attractions:favorites' %}">Favorites</a>

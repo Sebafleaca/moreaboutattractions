@@ -3,46 +3,58 @@ import random
 from django.shortcuts import render
 
 from .models import Attraction, Favorite
+from .forms import LocationForm
 from . import googleapi
 
 
 def home(request):
+    '''Render home page.'''
     return render(request, 'attractions/home.html')
 
 def nearby(request):
-
+    '''Render form to get location.'''
     if request.method == 'POST':
+        location_form = LocationForm(request.POST)
+    elif request.method == 'GET':
+        location_form = LocationForm()
+    else:
+        raise NameError("/nearby/ doesn't get POST nor GET")
 
-        actual_location = request.POST['location']
-        
-        latitude, longitude = actual_location.split(',')
-        maps_api = googleapi.GoogleApi(latitude, longitude)
-        
-        received_data = maps_api.mock_api()
-
-        already_in = Attraction
-
-        for elem in received_data:
-            if not already_in.objects.get(name=received_data[elem]['name']):
-                attraction = Attraction.objects.create()
-                attraction.name = received_data[elem]['name']
-                attraction.position = f"{latitude}, {longitude}"
-                attraction.saved = False
-                attraction.save()
-
-    return render(request, 'attractions/nearby.html')
+    return render(request, 'attractions/nearby.html', {'location_form': location_form})
 
 def found(request):
-    
-    api_response = googleapi.GoogleApi(0,0)
-    google_response = api_response.send_request()
+    '''Send location to API, add results to database and display them.'''
+    if request.method == 'POST':
+        location_form = LocationForm(request.POST)
+        
+        if location_form.is_valid():
+        
+            actual_location = location_form.cleaned_data['coordinates']
+            latitude, longitude = actual_location.split(', ')
+            api_response = googleapi.GoogleApi(latitude, longitude)
+        
+            google_response = api_response.send_request()
+            received_data = api_response.mock_api()
 
-    all_attractions = Attraction.objects.all()
-    context = {
-        'status': google_response['status'],
-        'message': google_response['error_message'],
-        'all_attractions': all_attractions
-    }
+            for element in received_data:
+                if not Attraction.objects.filter(name=received_data[element]['name']):
+                    attraction = Attraction.objects.create()
+                    attraction.name = received_data[element]['name']
+                    attraction.position = f"{latitude}, {longitude}"
+                    attraction.saved = False
+                    attraction.save()
+    
+            all_attractions = Attraction.objects.all()
+            context = {
+                'status': google_response['status'],
+                'message': google_response['error_message'],
+                'all_attractions': all_attractions,
+                'latitude': latitude,
+                'longitude': longitude,
+                'received_data': received_data,
+            }
+    else:
+        raise NameError("/nearby/ doesn't get POST nor GET")
 
     return render(request, 'attractions/found.html', context)
 
